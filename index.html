@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html ng-app="ghApp">
+    <head>
+        <title>GLORY HOLE</title>
+        <!-- Basic META TAGS
+		================================================================= -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <!-- Handle the phone numbers links. "no" indicates that telephone numbers in the HTML code should not appear as hypertext links  -->
+        <meta name="format-detection" content="telephone=no" />
+        
+        <!-- Remove tap highlight on Windows Phone -->
+        <meta name="msapplication-tap-highlight" content="no" />
+
+		<!-- Mobile Specific Metas
+		================================================================= -->
+		<meta id="viewport" name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+       
+        <!-- CSS
+		================================================================= -->
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/MQ.css" />
+        <!-- JavaScript
+		================================================================= -->
+        
+        
+        <!-- Angular core scripts -->
+        <script type="text/javascript" src="js/angular/angular.min.js"></script><!--  AngularJS v1.2.23 -->
+        <script type="text/javascript" src="js/angular/angular-touch.min.js"></script><!--  AngularJS touch Module -->
+        <script type="text/javascript" src="js/angular/angular-animate.min.js"></script><!--  AngularJS Animation Module -->
+        
+		<!-- Application scripts -->
+        <script type="text/javascript" src="js/appConfig.js"></script>
+        <script type="text/javascript" src="js/appServices.js"></script>
+        <script type="text/javascript" src="js/appControllers.js"></script>
+        
+        
+        
+        <script type="text/javascript" src="js/phaser.min.js"></script>
+        <script type="text/javascript" src="js/game/boot.js"></script>
+        <script type="text/javascript" src="js/game/preload.js"></script>
+        <script type="text/javascript" src="js/game/mainMenu.js"></script>
+    </head>
+	
+    <body id="theme_regular" class="">
+    
+		<!-- APP VIEWS -->
+		<div id="mainWrapper" class="view-frame" ng-controller="globalCtrl">
+            
+            <div id="gameScreen" ng-controller="gameCtrl"></div>
+            
+            
+            <div id="profileScreen" class="flex-box v-direction" ng-controller="profileCtrl" ng-show="showProfile">
+                <header class="no-grow">
+                    <h2>GLORY PROFILE</h2>
+                </header>
+                <div id="profileContent" class="one-grow">
+                    <ul>
+                        <li>
+                            <strong>
+                                Coins:
+                            </strong>
+                            <span>
+                                67
+                            </span>
+                        </li>
+                        <li>
+                            <strong>
+                                Lifetime Score:
+                            </strong>
+                            <span>
+                                2000
+                            </span>
+                        </li>
+                        <li>
+                            <strong>
+                                Best Score:
+                            </strong>
+                            <span>
+                                26
+                            </span>
+                        </li>
+                        <li>
+                            <strong>
+                                Total Games:
+                            </strong>
+                            <span>
+                                20
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="storeScreen" class="flex-box v-direction" ng-controller="storeCtrl" ng-show="showStore">
+                <header class="no-grow">
+                    <h2>GLORY STORE</h2>
+                    <h3>{{points}}</h3>
+                </header>
+                
+
+                <div id="storeContent" class="one-grow">
+                
+                    <div class="width-prop">
+                    
+                        <!-- <section class="store-cat cfix" ng-repeat="storeCat in storeData">
+                            <h4>{{storeCat.catTitle}}</h4>
+                            <ul class="item-list cfix">
+                                <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available : storeCat.itemId == avaItems[storeCat.catId].}" ng-click="buyItem(storeItem.itemPrice, itemId)">
+                                    <h5>{{storeItem.itemName}}</h5>
+                                    <h6>{{storeItem.itemPrice}}</h6>
+                                    <div class="item-info">
+                                        <img ng-src="{{storeItem.itemThumbnail}}" alt="" />
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>  -->   
+                    </div>
+                    
+                    <footer>
+                        <div class="container">
+                            <a href="#/">BACK</a>
+                        </div>
+                    </footer>
+                    
+                </div>
+                
+                
+            </div>
+                
+           
+       </div>
+        
+		<!--<script src="js/index.js"></script> -->
+        
+    </body>
+</html>

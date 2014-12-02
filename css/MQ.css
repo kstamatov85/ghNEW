@@ -1,0 +1,42 @@
+
+
+
+@media only screen and (min-width: 768px){
+	
+}
+
+/* #Tablet (Portrait)
+================================================== */
+/* Note: Design for a width of 768px */
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+	
+}
+
+/*  #Mobile (Portrait)
+================================================== */
+/* Note: Design for a width of 320px */
+@media only screen and (max-width: 479px) {
+	/* === HOME SCREEN === */
+	#logo{
+		width:240px;
+	}	
+	#appSubNav > li > *,
+	#appMainNav > li > *{
+		height:50px;
+		height:50px;
+		line-height:50px;
+	}
+	#appMainNav > li{
+		margin-bottom:15px;
+	}	
+	#appMainNav > li a{
+		font-size:20px;
+	}
+	
+	#homeScreen footer{
+		font-size:12px;
+	}
+
+}
+
