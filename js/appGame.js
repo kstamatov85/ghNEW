@@ -3,8 +3,14 @@
     var appGame = angular.module('gameLogic',[]);
     
     appGame.controller('gameCtrl', function($rootScope, $scope) {
-        $scope.showProfile = false;
+        $scope.showProfile = true;
         $scope.showStore = false;
+        
+        // listen for the event in the relevant $scope
+        $scope.$on('closeMenu', function (event, data) {
+          console.log(data); // 'Data to send'
+        });
+        
         
         /* ### ### GAME BOOT DATA ### ###  */
         
@@ -37,6 +43,7 @@
             $rootScope.gh.GAME_WIDTH = 1080;
             $rootScope.gh.GAME_HEIGHT = 1920;
         };
+        
         $rootScope.gh.Preload.prototype = {
             preload: function(){
                 // set background color and preload image
@@ -46,6 +53,8 @@
                 // load images
                 this.load.image('background', 'img/background.png');
                 this.load.image('storeIcon', 'img/storeIcon.png');
+                this.load.image('profileIcon', 'img/profileIcon.png');
+                
                 
                 // load spritesheets
                 /* this.load.spritesheet('candy', 'img/candy.png', 82, 98);
@@ -57,6 +66,7 @@
                 this.state.start('Menu');
             }
         };
+        
         
         //START GAME MENU
         $rootScope.gh.Menu = function(game){};
@@ -70,7 +80,11 @@
                 
                 
                  // add the button that will start the game
-                this.add.button($rootScope.gh.GAME_WIDTH-701-50, $rootScope.gh.GAME_HEIGHT-350-50, 'storeIcon', this.openProfile, this);
+                this.add.button($rootScope.gh.GAME_WIDTH-701-50, $rootScope.gh.GAME_HEIGHT-350-50, 'storeIcon', this.openStore, this);
+                
+                this.add.button(100, 100, 'profileIcon', this.openProfile, this);
+                
+                
                 // add the button that will start the game
                 this.add.button($rootScope.gh.GAME_WIDTH-401-50, $rootScope.gh.GAME_HEIGHT-143-50, 'button-start', this.startGame, this, 1, 0, 2);
             },
@@ -80,11 +94,13 @@
             },
             
             openProfile: function() {
-                // start the Game state
-                console.log('aaa');
-                console.log($scope.showProfile);
-                
                 $scope.showProfile = true;
+                $scope.$apply();
+                //this.state.start('Game');
+            },
+            
+            openStore: function() {
+                $scope.showStore = true;
                 $scope.$apply();
                 //this.state.start('Game');
             }
