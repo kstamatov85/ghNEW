@@ -1,13 +1,15 @@
 (function(){
     
-    var appCtrl = angular.module('appServices',[]);
+    var appServ = angular.module('appServices',[]);
     
-    //GAME LOCALIZATIONS
-    appCtrl.factory('globalData', function() {
+    
+    /* ### GLOBAL DATA ### */
+    appServ.factory('globalData', function() {
         
         var data = {
             version: '1.00'
         };
+        
         
         /* === PUBLIC ACCESS === */
         var publicData = {};
@@ -17,9 +19,10 @@
         return publicData;
     });
 	
-	//STORE GAME DATA
-    appCtrl.factory('storeData', function($rootScope) {
-		
+	/* ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### */
+
+    /* ### STORE DATA ### */
+    appServ.factory('storeData', function($rootScope) {
 		
 		/* for(var i=0; i<data.length; i++){
 			 for(j=0; j < data[i].storeItems.length; j++){
@@ -177,15 +180,15 @@
         publicData.getData = function(){
             return data;
         };
-		
-		
-		
+
         return publicData;
 	
 	});
 	
+    /* ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### */
+    
     //GAME SETTINGS
-    appCtrl.factory('gameSettings', function() {
+    appServ.factory('gameSettings', function() {
         
         var gameSettings = {
             gameTime : 60000, //game time ms
@@ -205,5 +208,5 @@
         return publicData;
     });
     
-
+    
 })();
