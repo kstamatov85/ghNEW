@@ -84,7 +84,7 @@
         $rootScope.gh.Preload.prototype = {
             preload: function(){
                 // set background color and preload image
-                this.stage.backgroundColor = '#cccccc';
+                this.stage.backgroundColor = '#111111';
                 this.preloadBar = this.add.sprite(($rootScope.gh.GAME_WIDTH-311)/2, ($rootScope.gh.GAME_HEIGHT-27)/2, 'preloaderBar');
                 this.load.setPreloadSprite(this.preloadBar);
                 // load images
@@ -96,10 +96,27 @@
             },
             create: function(){
                 // start the MainMenu state
-                //this.state.start('mainMenu');
+                this.state.start('Menu');
             }
         };
         
+        //START GAME MENU
+        $rootScope.gh.Menu = function(game){};
+        $rootScope.gh.Menu.prototype = {
+            create: function(){
+                // display images
+                //var bg = this.add.tileSprite(0, 0, $rootScope.gh.GAME_WIDTH, $rootScope.gh.GAME_HEIGHT, 'background');
+                var bg = this.add.sprite(0, 0, 'background');
+                bg.width = $rootScope.gh.GAME_WIDTH;
+                bg.height = $rootScope.gh.GAME_HEIGHT;
+                // add the button that will start the game
+                this.add.button($rootScope.gh.GAME_WIDTH-401-50, $rootScope.gh.GAME_HEIGHT-143-50, 'button-start', this.startGame, this, 1, 0, 2);
+            },
+            startGame: function() {
+                // start the Game state
+                //this.state.start('Game');
+            }
+        };
         
         
 

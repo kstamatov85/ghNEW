@@ -47,9 +47,10 @@
 		<!-- APP VIEWS -->
 		<div id="mainWrapper" class="view-frame" ng-controller="globalCtrl">
             
+            <!-- GAME SCREEN -->
             <div id="gameScreen" ng-controller="gameCtrl"></div>
             
-            
+            <!-- PROFILE SCREEN -->
             <div id="profileScreen" class="flex-box v-direction" ng-controller="profileCtrl" ng-show="showProfile">
                 <header class="no-grow">
                     <h2>GLORY PROFILE</h2>
@@ -92,6 +93,7 @@
                 </div>
             </div>
             
+            <!-- STORE SCREEN -->
             <div id="storeScreen" class="flex-box v-direction" ng-controller="storeCtrl" ng-show="showStore">
                 <header class="no-grow">
                     <h2>GLORY STORE</h2>
@@ -128,7 +130,6 @@
                 
             </div>
                 
-           
        </div>
         
 		<!--<script src="js/index.js"></script> -->
