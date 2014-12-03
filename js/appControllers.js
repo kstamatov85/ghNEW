@@ -2,12 +2,11 @@
     
     var appCtrl = angular.module('appControllers',[]);
     
-    appCtrl.controller('globalCtrl', function($rootScope, $scope, globalData) {
-        $scope.showProfile = false;
-        $scope.showStore = false;
+    /* appCtrl.controller('globalCtrl', function($rootScope, $scope, globalData) {
+        
         
         $scope.data = globalData.getData();
-    });
+    }); */
     
 
     appCtrl.controller('storeCtrl', function($rootScope, $scope, storeData) {
