@@ -3,12 +3,14 @@
     var appGame = angular.module('gameLogic',[]);
     
     appGame.controller('gameCtrl', function($rootScope, $scope) {
-        $scope.showProfile = true;
+        
+        //CLOSE EXTRA SCREENS BY DEFAULT
+        $scope.showProfile = false;
         $scope.showStore = false;
         
-        // listen for the event in the relevant $scope
+        //CLOSE MENU LISTENER
         $scope.$on('closeMenu', function (event, data) {
-          console.log(data); // 'Data to send'
+          $scope[data] = false;
         });
         
         
