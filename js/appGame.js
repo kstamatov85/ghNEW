@@ -58,10 +58,17 @@
                 this.load.image('storeIcon', 'img/storeIcon.png');
                 this.load.image('profileIcon', 'img/profileIcon.png');
                 this.load.image('pauseIcon', 'img/button-pause.png');
+                this.load.image('windArrow', 'img/arrowImg.png');
+                //Load pointers
+                
                 // load walls
                 this.load.image('gameBG-1', 'img/pattern6.jpg');
-                //Load holes
-                this.load.image('hole-1', 'img/hole1.jpg');
+                
+                //Load mouth
+                this.load.image('hole-1', 'img/hole.png');
+                
+                //Load mouth
+                this.load.image('mouth-1', 'img/mouth1.jpg');
                 
                 
                 // load spritesheets
@@ -112,7 +119,7 @@
             //PUBLIC PARAMS
             $rootScope.gh.p_score = 0;
             $rootScope.gh.p_timer = 60;
-            
+            $rootScope.gh.windAngle = null;
             $rootScope.gh.p_scoreText = null;
             $rootScope.gh.p_timeAvab = null;
             //PRIVATE PARAMS
@@ -125,21 +132,41 @@
                 //Add gravity
                 this.physics.startSystem(Phaser.Physics.ARCADE);
                 this.physics.arcade.gravity.y = 200;
+                this.physics.arcade.gravity.x = 0;
                 
-                // display images
+                // DISPLAY WORLD IMAGES
+                
+                // Background
                 var bg = this.add.tileSprite(0, 0, $rootScope.gh.GAME_WIDTH, $rootScope.gh.GAME_HEIGHT, 'gameBG-1');
+                // Score 
+                $rootScope.gh.p_scoreText = this.add.text(50, 50, "0", this.g_fontStyle);
+                // Timer
+                $rootScope.gh.p_timeAvab = this.add.text($rootScope.gh.GAME_WIDTH/2, 50, $rootScope.gh.p_timer, this.g_fontStyle);
+                $rootScope.gh.p_timeAvab.anchor.setTo(0.5, 0.5);
+                // Add Pause button
+                this.add.button($rootScope.gh.GAME_WIDTH-100, 50, 'pauseIcon', this.managePause, this);
+                // Wind Arrow
+                $rootScope.gh.windAngle = this.add.sprite($rootScope.gh.GAME_WIDTH/2, 200, 'windArrow', this);
+                $rootScope.gh.windAngle.anchor.setTo(0.5, 0.5);
+                $rootScope.gh.windAngle.scale.setTo(0.5, 0.5);
+                $rootScope.gh.windAngle.angle = 90;
                
                 
-                var wall = this.add.sprite(($rootScope.gh.GAME_WIDTH-128)/2, 128, 'hole-1');
+                var mouth = this.add.sprite($rootScope.gh.GAME_WIDTH/2, 500, 'mouth-1');
+                var hole = this.add.sprite( $rootScope.gh.GAME_WIDTH/2, 500, 'hole-1');
+                hole.anchor.setTo(0.5, 0.5);
+                mouth.anchor.setTo(0.5, 0.5);
                 
-                // Add score
-                $rootScope.gh.p_scoreText = this.add.text(200, 100, "0", this.g_fontStyle);
+                console.log(mouth.width);
+                console.log(hole.width);
+                mouth.width = hole.width;
+                mouth.height = hole.height;
                 
-                // Add Timer
-                $rootScope.gh.p_timeAvab = this.add.text(200, 500, $rootScope.gh.p_timer, this.g_fontStyle);
+                // Add hole
+               
                 
-                // Add Pause button
-                this.add.button($rootScope.gh.GAME_WIDTH-200, 100, 'pauseIcon', this.managePause, this);
+                
+                
                 
                 /* bg.input.onDown.add(function(){
                     $rootScope.gh.p_score+=1;
@@ -158,7 +185,7 @@
                 }, this);
             },
             update: function() {
-                
+                //$rootScope.gh.windAngle.angle = game.rnd.angle();
                 
             },
             clickScore: function(){
@@ -167,6 +194,11 @@
                     $rootScope.gh.p_scoreText.setText($rootScope.gh.p_score);
             },
             countDown : function(){
+                if($rootScope.gh.p_timer % 5 === 0 ){
+                    var angleVal = Math.cos( Math.PI * Math.round( Math.random() ) );
+                    //game.add.tween(mummy).to({ x: game.width + (1600 + mummy.x) }, 20000, Phaser.Easing.Linear.None, true);
+                    $rootScope.gh.windAngle.angle = 90*angleVal;
+                }
                 $rootScope.gh.p_timer-=1;
                 if($rootScope.gh.p_timer === 0 ){this.time.events.stop()}
                 $rootScope.gh.p_timeAvab.setText($rootScope.gh.p_timer);
