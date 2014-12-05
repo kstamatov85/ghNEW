@@ -122,6 +122,7 @@
             $rootScope.gh.windAngle = null;
             $rootScope.gh.p_scoreText = null;
             $rootScope.gh.p_timeAvab = null;
+            $rootScope.gh.pointer = null;
             //PRIVATE PARAMS
             this.g_fontStyle = {font: "60px Arial", fill: "#FF0000", stroke: "#333333", strokeThickness: 5, align: "center"};
         
@@ -151,28 +152,28 @@
                 $rootScope.gh.windAngle.scale.setTo(0.5, 0.5);
                 $rootScope.gh.windAngle.angle = 90;
                
-                
+                //HOLE AND MOUTH
                 var mouth = this.add.sprite($rootScope.gh.GAME_WIDTH/2, 500, 'mouth-1');
                 var hole = this.add.sprite( $rootScope.gh.GAME_WIDTH/2, 500, 'hole-1');
-                hole.anchor.setTo(0.5, 0.5);
                 mouth.anchor.setTo(0.5, 0.5);
+                hole.anchor.setTo(0.5, 0.5);
                 
-                console.log(mouth.width);
-                console.log(hole.width);
-                mouth.width = hole.width;
-                mouth.height = hole.height;
+                mouth.width = hole.width - 70;
+                mouth.height = hole.height - 70;
                 
-                // Add hole
-               
+                //ADD MASK TO THE MOUTH
+                var graphics = game.add.graphics($rootScope.gh.GAME_WIDTH/2, 500);
+                graphics.beginFill();
+                graphics.drawCircle(0, 0,300);
+                mouth.mask = graphics;
                 
                 
+                // POINTER
+                $rootScope.gh.pointer = this.add.sprite($rootScope.gh.GAME_WIDTH/2, $rootScope.gh.GAME_HEIGHT, 'windArrow', this);
+                $rootScope.gh.pointer.anchor.setTo(0.5, 0.5);
+                $rootScope.gh.pointer.scale.setTo(0.5, 0.5);
                 
-                
-                /* bg.input.onDown.add(function(){
-                    $rootScope.gh.p_score+=1;
-                    $rootScope.gh.p_scoreText.setText($rootScope.gh.p_score);
-                }, this); */
-                
+                //RUN COUNTER
                 this.time.events.loop(Phaser.Timer.SECOND, this.countDown, this);
  
             },
@@ -188,16 +189,17 @@
                 //$rootScope.gh.windAngle.angle = game.rnd.angle();
                 
             },
-            clickScore: function(){
+            clickScore: function(){ //CURRENTLY NOT USED
                 console.log('sss');
                 $rootScope.gh.p_score+=1;
                     $rootScope.gh.p_scoreText.setText($rootScope.gh.p_score);
             },
             countDown : function(){
-                if($rootScope.gh.p_timer % 5 === 0 ){
+                if($rootScope.gh.p_timer % 2 === 0 ){
                     var angleVal = Math.cos( Math.PI * Math.round( Math.random() ) );
                     //game.add.tween(mummy).to({ x: game.width + (1600 + mummy.x) }, 20000, Phaser.Easing.Linear.None, true);
-                    $rootScope.gh.windAngle.angle = 90*angleVal;
+                    game.add.tween($rootScope.gh.windAngle).to({angle:90*angleVal}, 500, Phaser.Easing.Linear.None, true);
+                    //$rootScope.gh.windAngle.angle = 90*angleVal;
                 }
                 $rootScope.gh.p_timer-=1;
                 if($rootScope.gh.p_timer === 0 ){this.time.events.stop()}
