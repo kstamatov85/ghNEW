@@ -155,7 +155,7 @@
                 //ADD GRAVITY
                 this.physics.startSystem(Phaser.Physics.ARCADE);
                 this.physics.arcade.gravity.y = 0;
-                this.physics.arcade.gravity.x = -1500;
+                this.physics.arcade.gravity.x = 0;
                 
                 // DISPLAY WORLD IMAGES
                 
@@ -170,7 +170,6 @@
                 // Timer
                 $rootScope.gh.p_timeAvab = this.add.text($rootScope.gh.GAME_WIDTH/2, 50, '60', this.g_fontStyle);
                 $rootScope.gh.p_timeAvab.anchor.setTo(0.5, 0.5);
-                
                 // Run timer
                 this.time.events.loop(Phaser.Timer.SECOND, this.countDown, this);
                 
@@ -182,44 +181,35 @@
                 // Wind text value
                 $rootScope.gh.p_windValue = this.add.text($rootScope.gh.GAME_WIDTH/2, 270, '', this.g_fontStyle2);
                 $rootScope.gh.p_windValue.anchor.setTo(0.5, 0.5);
-                this.windManage(5);
+                this.windManage(5);//Set first values
                 
-                //HOLE, MOUTH and TARGET
+                // HOLE, MOUTH AND TARGET
+                // Mouth image
                 $rootScope.gh.mouth = this.add.sprite($rootScope.gh.GAME_WIDTH/2, 500, 'mouth-1');
                 $rootScope.gh.mouth.anchor.set(0.5, 0.5);
-                
+                // Hole image
                 $rootScope.gh.hole = this.add.sprite( $rootScope.gh.GAME_WIDTH/2, 500, 'hole-1');
                 $rootScope.gh.hole.anchor.setTo(0.5, 0.5);
-                
-                
-                
-                //Mouth size
+                // Mouth size
                 $rootScope.gh.mouth.width = $rootScope.gh.hole.width - 40;
                 $rootScope.gh.mouth.height = $rootScope.gh.hole.height - 40;
-                
+                //Attach Mask to Mouth
+                var mouth_mask = game.add.graphics($rootScope.gh.GAME_WIDTH/2, 500).beginFill().drawCircle(0, 0, 200); 
+                $rootScope.gh.mouth.mask = mouth_mask;
+                // Target image
                 $rootScope.gh.target = this.add.sprite( $rootScope.gh.GAME_WIDTH/2, 500, 'target');
                 $rootScope.gh.target.anchor.setTo(0.5, 0.5);
-                
-               //ADD MASK TO THE MOUTH
-                var graphics = game.add.graphics($rootScope.gh.GAME_WIDTH/2, 500).beginFill().drawCircle(0, 0, 200); 
-                $rootScope.gh.mouth.mask = graphics;
-                
+                // Enable Physics for Target
                 this.physics.arcade.enable($rootScope.gh.target);
                 $rootScope.gh.target.body.allowGravity = false;
-                // Enable Phycics for Target
                 
-                
-                
+                //Create bitmap layer to take tab events / pause button fix
                 var bmd = this.make.bitmapData(1080, 1920);
-                //creates the BitmapData object, you can use it to create figures:
-                // bmd.alphaMask('mouth-1', 'ball-1');
                 $rootScope.gh.tabZone = this.add.sprite(0, 0, bmd);
                 $rootScope.gh.tabZone.inputEnabled = true;
-                
                 // add event listener to click/tap
                 $rootScope.gh.tabZone.events.onInputDown.add(this.shootBullet, this);
                 
-
                 // POINTER
                 $rootScope.gh.pointer = this.add.sprite($rootScope.gh.GAME_WIDTH/2, $rootScope.gh.GAME_HEIGHT, 'windArrow', this);
                 $rootScope.gh.pointer.anchor.setTo(0.5, 0.5);
