@@ -134,14 +134,15 @@
             $rootScope.gh.hole = null;
             $rootScope.gh.mouth = null;
             $rootScope.gh.target = null;
+            $rootScope.gh.tabZone = null;
             
             $rootScope.gh.windConstant = 150;
-            $rootScope.gh.bulletSpeed = -1400;
+            $rootScope.gh.bulletSpeed = -1500;
             // PRIVATE PARAMS
             this.g_fontStyle = {font: "60px Arial", fill: "#FF0000", stroke: "#333333", strokeThickness: 5, align: "center"};
             this.g_fontStyle2 = {font: "80px Arial", fill: "#37bf0d", stroke: "#ffffff", strokeThickness: 10, align: "center"};
             
-            this.SHOT_DELAY = 1200; // Delay between shoot bullets
+            this.SHOT_DELAY = 1300; // Delay between shoot bullets
 
         };
         
@@ -154,9 +155,11 @@
                 //ADD GRAVITY
                 this.physics.startSystem(Phaser.Physics.ARCADE);
                 this.physics.arcade.gravity.y = 0;
-                this.physics.arcade.gravity.x = 0;
+                this.physics.arcade.gravity.x = -1500;
                 
                 // DISPLAY WORLD IMAGES
+                
+                var floor = new Phaser.Rectangle(0, 550, 800, 50);
                 
                 // Background
                 var bg = this.add.tileSprite(0, 0, $rootScope.gh.GAME_WIDTH, $rootScope.gh.GAME_HEIGHT, 'gameBG-1');
@@ -167,11 +170,9 @@
                 // Timer
                 $rootScope.gh.p_timeAvab = this.add.text($rootScope.gh.GAME_WIDTH/2, 50, '60', this.g_fontStyle);
                 $rootScope.gh.p_timeAvab.anchor.setTo(0.5, 0.5);
+                
                 // Run timer
                 this.time.events.loop(Phaser.Timer.SECOND, this.countDown, this);
-                
-                // Add Pause button
-                this.add.button($rootScope.gh.GAME_WIDTH-100, 50, 'pauseIcon', this.managePause, this);
                 
                 // Wind Arrow
                 $rootScope.gh.windAngle = this.add.sprite($rootScope.gh.GAME_WIDTH/2, 200, 'windArrow', this)
@@ -190,34 +191,41 @@
                 $rootScope.gh.hole = this.add.sprite( $rootScope.gh.GAME_WIDTH/2, 500, 'hole-1');
                 $rootScope.gh.hole.anchor.setTo(0.5, 0.5);
                 
-                $rootScope.gh.target = this.add.sprite( $rootScope.gh.GAME_WIDTH/2, 500, 'target');
-                $rootScope.gh.target.anchor.setTo(0.5, 0.5);
+                
                 
                 //Mouth size
                 $rootScope.gh.mouth.width = $rootScope.gh.hole.width - 40;
                 $rootScope.gh.mouth.height = $rootScope.gh.hole.height - 40;
                 
+                $rootScope.gh.target = this.add.sprite( $rootScope.gh.GAME_WIDTH/2, 500, 'target');
+                $rootScope.gh.target.anchor.setTo(0.5, 0.5);
+                
                //ADD MASK TO THE MOUTH
                 var graphics = game.add.graphics($rootScope.gh.GAME_WIDTH/2, 500).beginFill().drawCircle(0, 0, 200); 
                 $rootScope.gh.mouth.mask = graphics;
                 
-                // Enable Phycics for Target
                 this.physics.arcade.enable($rootScope.gh.target);
+                $rootScope.gh.target.body.allowGravity = false;
+                // Enable Phycics for Target
                 
                 
-                //var bmd = this.make.bitmapData(128, 128);
+                
+                var bmd = this.make.bitmapData(1080, 1920);
                 //creates the BitmapData object, you can use it to create figures:
                 // bmd.alphaMask('mouth-1', 'ball-1');
-                //this.add.sprite($rootScope.gh.GAME_WIDTH/2, 500, bmd).anchor.set(0.5, 0.5);
-               
+                $rootScope.gh.tabZone = this.add.sprite(0, 0, bmd);
+                $rootScope.gh.tabZone.inputEnabled = true;
+                
+                // add event listener to click/tap
+                $rootScope.gh.tabZone.events.onInputDown.add(this.shootBullet, this);
                 
 
                 // POINTER
                 $rootScope.gh.pointer = this.add.sprite($rootScope.gh.GAME_WIDTH/2, $rootScope.gh.GAME_HEIGHT, 'windArrow', this);
                 $rootScope.gh.pointer.anchor.setTo(0.5, 0.5);
                 $rootScope.gh.pointer.scale.setTo(0.5, 0.5);
-                $rootScope.gh.pointer.angle = 0;
-                //game.add.tween($rootScope.gh.pointer).to({angle:-50}, 1200, Phaser.Easing.Linear.None, true, 0, 1200, true);
+                $rootScope.gh.pointer.angle = 50;
+                game.add.tween($rootScope.gh.pointer).to({angle:-50}, 1200, Phaser.Easing.Linear.None, true, 0, 1200, true);
                 
                 // CREATE OBJECT POOL WITH BULLETS
                 $rootScope.gh.bulletGroup = this.game.add.group();
@@ -227,6 +235,8 @@
                 for(var i = 0; i < 5; i++) {
                     // Create each bullet and add it to the group.
                     var bullet = this.game.add.sprite(0, 0, 'ball-1');
+                    bullet.width = 100;
+                    bullet.height = 100;
                     $rootScope.gh.bulletGroup.add(bullet);
                     // Set its pivot point to the center of the bullet
                     bullet.anchor.setTo(0.5, 0.5);
@@ -234,10 +244,13 @@
                     bullet.kill();
                 };
                 
-                this.inputEnabled = true;
+                //this.inputEnabled = true;
                 /* this.input.onDown.add(this.clickScore, this); */
                 //this.events.onInputDown.add(this.clickScore, this);
- 
+                
+                // Add Pause button
+                this.add.button($rootScope.gh.GAME_WIDTH-100, 50, 'pauseIcon', this.managePause, this);
+                
             },
             
             // UPDATE GAME
@@ -246,9 +259,9 @@
                 game.physics.arcade.overlap($rootScope.gh.bulletGroup, $rootScope.gh.target, this.targetHit, null, this);
                 
                 // Shoot a bullet
-                if(this.input.activePointer.isDown) {
+                /* if(this.input.activePointer.isDown) {
                     this.shootBullet();
-                }
+                } */
                 
             },
             
@@ -273,7 +286,7 @@
                     var wind = Math.floor(Math.random() * 10 ); // 0 to 10
                     
                     $rootScope.gh.p_windValue.setText(wind);
-                    //game.physics.arcade.gravity.x = $rootScope.gh.windConstant * wind * angleVal;
+                    game.physics.arcade.gravity.x = $rootScope.gh.windConstant * wind * angleVal;
                     game.add.tween($rootScope.gh.windAngle).to({angle:90*angleVal}, 500, Phaser.Easing.Linear.None, true);
                 }
             },
@@ -286,7 +299,7 @@
                 if (this.lastBulletShotAt === undefined){ 
                     this.lastBulletShotAt = 0
                 }    
-                console.log(this.SHOT_DELAY);
+                //console.log(this.SHOT_DELAY);
                 if (this.time.now - this.lastBulletShotAt < this.SHOT_DELAY){
                     return;
                 };    
@@ -335,7 +348,7 @@
                 }, this);
             },
             clickScore : function(){ //CURRENTLY NOT USED
-                //console.log('sss');
+                console.log('sss');
             },
             
         };
