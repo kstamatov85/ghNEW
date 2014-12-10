@@ -16,12 +16,11 @@
         
         /* ### ### GAME BOOT DATA ### ###  */
         
+        //GET BOOT AND PRELOAD FUNCTIONS
         var gData = $rootScope.gh;
-        
         
         //START MENU
         gData.Menu = function(game){};
-        
         gData.Menu.prototype = {
             create: function(){
                 // display images
@@ -37,47 +36,51 @@
                 // Start Game button
                 this.add.button(gData.GAME_WIDTH-450, gData.GAME_HEIGHT-200, 'button-start', this.startGame, this, 1, 0, 2);
             },
+            // Start Game
             startGame: function() {
                 this.state.start('Game');
             },
+            // Open Profile View
             openProfile: function() {
                 $scope.showProfile = true;
                 $scope.$apply();
             },
+            // Open Store View
             openStore: function() {
                 $scope.showStore = true;
                 $scope.$apply();
             }
-            
         };
         
-        
+
         //START GAME
         gData.Game = function(game){
             
-            // SET PARAMS
+            // IMAGE OBJECTS
+            gData.wind_arrow = null; // Wind arrow image object
+            gData.pointer = null; // Pointer image object
+            gData.hole = null; // Hole image object
+            gData.mouth = null; // Mouth image object
+            gData.target = null; // Transparent image which is actual target
+            gData.tabZone = null; // Holding tap layer
             
-            // PUBLIC PARAMS
-            gData.p_score = 0;
-            gData.p_timer = 60;
-            gData.windAngle = null;
-            gData.p_scoreText = null;
-            gData.p_timeAvab = null;
-            gData.pointer = null;
+            //TEXT OBJECTS
+            gData.p_scoreText = null; // Score text Object
+            gData.p_timeAvab = null; // Time left Object
+            
+            //GROUPS
             gData.bulletGroup = null;
-            gData.hole = null;
-            gData.mouth = null;
-            gData.target = null;
-            gData.tabZone = null;
             
-            gData.windConstant = 150;
-            gData.bulletSpeed = -1500;
-            // PRIVATE PARAMS
+            // FONTS
             this.g_fontStyle = {font: "60px Arial", fill: "#FF0000", stroke: "#333333", strokeThickness: 5, align: "center"};
             this.g_fontStyle2 = {font: "80px Arial", fill: "#37bf0d", stroke: "#ffffff", strokeThickness: 10, align: "center"};
             
-            this.SHOT_DELAY = 1300; // Delay between shoot bullets
-
+            // CONSTANTS
+            this.score = 0; // Start Score
+            this.wind_constant = 150; // Wind power 1 step
+            this.bullet_speed = -1500; // Bullet Speed
+            this.shot_delay = 1300; // Delay between shoot bullets
+            this.timer = 60; // Game time
         };
         
         gData.Game.prototype = {
@@ -85,16 +88,10 @@
             // CREATE GAME
             
             create: function(){
-            
-                //ADD GRAVITY
-                
-                
                 // DISPLAY WORLD IMAGES
                 
-                var floor = new Phaser.Rectangle(0, 550, 800, 50);
-                
                 // Background
-                var bg = this.add.tileSprite(0, 0, gData.GAME_WIDTH, gData.GAME_HEIGHT, 'gameBG-1');
+                this.add.tileSprite(0, 0, gData.GAME_WIDTH, gData.GAME_HEIGHT, 'gameBG-1');
                 
                 // Score 
                 gData.p_scoreText = this.add.text(50, 50, "0", this.g_fontStyle);
@@ -106,10 +103,10 @@
                 this.time.events.loop(Phaser.Timer.SECOND, this.countDown, this);
                 
                 // Wind Arrow
-                gData.windAngle = this.add.sprite(gData.GAME_WIDTH/2, 200, 'windArrow', this)
-                gData.windAngle.anchor.setTo(0.5, 0.5);
-                gData.windAngle.scale.setTo(0.5, 0.5);
-                gData.windAngle.angle = 90;
+                gData.wind_arrow = this.add.sprite(gData.GAME_WIDTH/2, 200, 'windArrow', this)
+                gData.wind_arrow.anchor.setTo(0.5, 0.5);
+                gData.wind_arrow.scale.setTo(0.5, 0.5);
+                gData.wind_arrow.angle = 90;
                 // Wind text value
                 gData.p_windValue = this.add.text(gData.GAME_WIDTH/2, 270, '', this.g_fontStyle2);
                 gData.p_windValue.anchor.setTo(0.5, 0.5);
@@ -191,10 +188,10 @@
             countDown : function(){
                 
                 //Handle with timer
-                gData.p_timer-=1; //Reduce time
-                gData.p_timeAvab.setText(gData.p_timer);// Show time
-                this.windManage(gData.p_timer); // Update Wind value
-                if(gData.p_timer === 0 ){
+                this.timer-=1; //Reduce time
+                gData.p_timeAvab.setText(this.timer);// Show time
+                this.windManage(this.timer); // Update Wind value
+                if(this.timer === 0 ){
                     //STOP TIME AND GAME OVER
                     this.time.events.stop()
                 }
@@ -208,8 +205,8 @@
                     var wind = Math.floor(Math.random() * 10 ); // 0 to 10
                     
                     gData.p_windValue.setText(wind);
-                    game.physics.arcade.gravity.x = gData.windConstant * wind * angleVal;
-                    game.add.tween(gData.windAngle).to({angle:90*angleVal}, 500, Phaser.Easing.Linear.None, true);
+                    game.physics.arcade.gravity.x = this.wind_constant * wind * angleVal;
+                    game.add.tween(gData.wind_arrow).to({angle:90*angleVal}, 500, Phaser.Easing.Linear.None, true);
                 }
             },
             
@@ -222,7 +219,7 @@
                     this.lastBulletShotAt = 0
                 }    
                 //console.log(this.SHOT_DELAY);
-                if (this.time.now - this.lastBulletShotAt < this.SHOT_DELAY){
+                if (this.time.now - this.lastBulletShotAt < this.shot_delay){
                     return;
                 };    
                 this.lastBulletShotAt = this.game.time.now;
@@ -251,13 +248,13 @@
                 
                 // Shoot it
                 bullet.body.velocity.x = Math.sin(gData.pointer.rotation) * 1000; //Set Angle
-                bullet.body.velocity.y = gData.bulletSpeed; //Set Speed
+                bullet.body.velocity.y = this.bullet_speed; //Set Speed
 
             },
             targetHit : function(mouth,bullet){
                 bullet.kill();//REMOVE THE BULLET
-                gData.p_score+=1;//increment score
-                gData.p_scoreText.setText(gData.p_score);//show score
+                this.score+=1;//increment score
+                gData.p_scoreText.setText(this.score);//show score
                 
             },
             // PAUSE FUNCTION

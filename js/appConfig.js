@@ -58,7 +58,7 @@
         $rootScope.gh.GAME_WIDTH = 1080;
         $rootScope.gh.GAME_HEIGHT = 1920;
         
-        //BOOT GAME DATA
+        //BOOT GAME DATA - Apply game settings
         $rootScope.gh.Boot = function(game){};
         $rootScope.gh.Boot.prototype = {
             preload: function(){
@@ -72,7 +72,7 @@
                 // Scaling options
                 this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
                 
-                //have the game centered horizontally
+                // have the game centered horizontally
                 this.scale.pageAlignHorizontally = true;
                 this.scale.pageAlignVertically = true;
                 
@@ -92,15 +92,16 @@
             }
         };
         
-        //PRELOAD GAME DATA
+        //PRELOAD GAME RESOURCES - images/sounds
         $rootScope.gh.Preload = function(game){};
         $rootScope.gh.Preload.prototype = {
             preload: function(){
-                
-                // Add load Bar image
+                // Add loading Bar image
                 this.preloadBar = this.add.sprite(($rootScope.gh.GAME_WIDTH-311)/2, ($rootScope.gh.GAME_HEIGHT-27)/2, 'preloaderBar');
-                //Run Load Bar
+                // Run Loading Bar
                 this.load.setPreloadSprite(this.preloadBar);
+                
+                // START LOADING RESOURCES
                 
                 // load general images
                 this.load.image('background', 'img/background.png');
