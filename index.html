@@ -53,7 +53,7 @@
             <!-- PROFILE SCREEN -->
             <div id="profileScreen" class="html-box flex-box v-direction" ng-controller="profileCtrl" ng-show="showProfile">
                 <header class="no-grow">
-                    <h2>GLORY PROFILE</h2>
+                    <h2>{{localization.profileLabel}}</h2>
                 </header>
                 
                 <div id="profileContent" class="data-box one-grow">
@@ -71,7 +71,7 @@
            
                 <footer class="no-grow">
                     <div class="container">
-                        <span ng-click="menuScreen('showProfile')">BACK TO MENU</span>
+                        <span ng-click="menuScreen('showProfile')">{{localization.backLabel}}</span>
                     </div>
                 </footer>
            </div>
@@ -79,11 +79,10 @@
             <!-- STORE SCREEN -->
             <div id="storeScreen" class="html-box flex-box v-direction" ng-controller="storeCtrl" ng-show="showStore">
                 <header class="no-grow">
-                    <h2>GLORY STORE</h2>
-                    <h3>{{points}}</h3>
+                    <h2>{{localization.storeLabel}}</h2>
+                    <h3>{{profileData.points}}</h3>
                 </header>
                 
-
                 <div id="storeContent" class="data-box one-grow">
                 
                     <div class="width-prop">
@@ -108,7 +107,7 @@
                 
                 <footer>
                     <div class="container">
-                        <span ng-click="menuScreen('showStore')">BACK TO MENU</span>
+                        <span ng-click="menuScreen('showStore')">{{localization.backLabel}}</span>
                     </div>
                 </footer>
                 

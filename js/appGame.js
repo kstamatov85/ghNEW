@@ -91,7 +91,7 @@
                 // DISPLAY WORLD IMAGES
                 
                 // Background
-                this.add.tileSprite(0, 0, gData.GAME_WIDTH, gData.GAME_HEIGHT, 'gameBG-1');
+                this.add.tileSprite(0, 0, gData.GAME_WIDTH, gData.GAME_HEIGHT, $rootScope.userStoreData.PlayGrounds.selectedItem);
                 
                 // Score 
                 gData.p_scoreText = this.add.text(50, 50, "0", this.g_fontStyle);
@@ -114,14 +114,14 @@
                 
                 // HOLE, MOUTH AND TARGET
                 // Mouth image
-                gData.mouth = this.add.sprite(gData.GAME_WIDTH/2, 500, 'mouth-1');
+                gData.mouth = this.add.sprite(gData.GAME_WIDTH/2, 500, $rootScope.userStoreData.Mouths.selectedItem);
                 gData.mouth.anchor.set(0.5, 0.5);
                 // Hole image
                 gData.hole = this.add.sprite( gData.GAME_WIDTH/2, 500, 'hole-1');
                 gData.hole.anchor.setTo(0.5, 0.5);
                 // Mouth size
-                gData.mouth.width = gData.hole.width - 40;
-                gData.mouth.height = gData.hole.height - 40;
+                gData.mouth.width = gData.hole.width - 70;
+                gData.mouth.height = gData.hole.height - 70;
                 //Attach Mask to Mouth
                 var mouth_mask = game.add.graphics(gData.GAME_WIDTH/2, 500).beginFill().drawCircle(0, 0, 200); 
                 gData.mouth.mask = mouth_mask;

@@ -16,62 +16,57 @@
 		$rootScope.userStoreData;
 		$rootScope.userProfileData;
 		
+		
 		//PROFILE DATA
         if(localStorage.getItem('profileData')){
             $rootScope.userProfileData = JSON.parse(localStorage.getItem('profileData'));
         }
         else{
-
-            var newProfileData = [
-				{title:"Points:",value:0},
-				{title:"Lifetime Score:",value:0},
-				{title:"Best Score:",value:0},
-				{title:"Total Games:",value:0}
-			];
+            var newProfileData = {
+				points : 0,
+				lifetimePoints : 0,
+				bestScore : 0,
+				totalGames : 0
+			};
             localStorage.setItem('profileData', JSON.stringify(newProfileData));
             $rootScope.userProfileData = JSON.parse(localStorage.getItem('profileData'));
-			
         };
 		
-
 		//STORE DATA
         if(localStorage.getItem('storeData')){
             $rootScope.userStoreData = JSON.parse(localStorage.getItem('storeData'));
         }
         else{
-            var newStoreData = 
-				{
-					PlayGrounds : {
-						selectedItem : 'wallBG-1', //correspond to itemId
-						'wallBG-1' : true,
-						'wallBG-2' : false,
-						'wallBG-3' : false,
-						'wallBG-4' : false,
-						'wallBG-5' : false,
-						'wallBG-6' : false
-					},
-					
-					Mouths : {
-						selectedItem : 'mouth-1', //correspond to itemId
-						'mouth-1' : true,
-						'mouth-2' : false,
-						'mouth-3' : false,
-						'mouth-4' : false,
-						'mouth-5' : false
-					}
-				};
+            var newStoreData = {
+				PlayGrounds : {
+					selectedItem : 'wallBG-1', //correspond to itemId
+					'wallBG-1' : true,
+					'wallBG-2' : false,
+					'wallBG-3' : false,
+					'wallBG-4' : false,
+					'wallBG-5' : false,
+					'wallBG-6' : false
+				},
+				Mouths : {
+					selectedItem : 'mouth-1', //correspond to itemId
+					'mouth-1' : true,
+					'mouth-2' : false,
+					'mouth-3' : false,
+					'mouth-4' : false,
+					'mouth-5' : false
+				}
+			};
 
-			
             localStorage.setItem('storeData', JSON.stringify(newStoreData));
             $rootScope.userStoreData = JSON.parse(localStorage.getItem('storeData'));
         };
 		
 		
-        
-        
-        
         /* ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### */
-        
+        /* ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### */
+        /* ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### */
+		
+
         /* ### ### GAME CONFIG ### ###  */
         
         //Create GAME DATA OBJ
@@ -90,7 +85,7 @@
             },
             create: function(){
                 // Loading screen will have dark background
-                this.stage.backgroundColor = '#111111';
+                this.stage.backgroundColor = '#000000';
                 
                 // Scaling options
                 this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
@@ -142,12 +137,12 @@
 
 				
                 // load walls
-                this.load.image('gameBG-1', 'img/walls/wallBG-1.jpg');
-				this.load.image('gameBG-2', 'img/walls/wallBG-2.jpg');
-				this.load.image('gameBG-3', 'img/walls/wallBG-3.jpg');
-				this.load.image('gameBG-4', 'img/walls/wallBG-4.jpg');
-				this.load.image('gameBG-5', 'img/walls/wallBG-5.jpg');
-				this.load.image('gameBG-6', 'img/walls/wallBG-6.jpg');
+                this.load.image('wallBG-1', 'img/walls/wallBG-1.jpg');
+				this.load.image('wallBG-2', 'img/walls/wallBG-2.jpg');
+				this.load.image('wallBG-3', 'img/walls/wallBG-3.jpg');
+				this.load.image('wallBG-4', 'img/walls/wallBG-4.jpg');
+				this.load.image('wallBG-5', 'img/walls/wallBG-5.jpg');
+				this.load.image('wallBG-6', 'img/walls/wallBG-6.jpg');
 				
 				
 				//Load mouth

@@ -7,7 +7,10 @@
     appServ.factory('globalData', function() {
         
         var data = {
-            version: '1.00'
+            version: '1.00',
+			storeLabel : 'GLORY STORE',
+			profileLabel : 'GLORY PROFILE',
+			backLabel : 'BACK TO MENU'
         };
         
         /* === PUBLIC ACCESS === */
@@ -20,10 +23,15 @@
 	
 	/* ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### */
 	
-	/* ### STORE DATA ### */
+	/* ### PROFILE DATA ### */
     appServ.factory('profileData', function($rootScope) {
 		
-		
+		var data = [
+			{title : 'POINTS:', value : $rootScope.userProfileData.points},
+			{title : 'LIFETIME POINTS:', value : $rootScope.userProfileData.lifetimePoints},
+			{title : 'BEST SCORE:', value : $rootScope.userProfileData.bestScore},
+			{title : 'TOTAL GAMES:', value : $rootScope.userProfileData.totalGames}
+		];
 		
 		/* === PUBLIC ACCESS === */
         var publicData = {};
