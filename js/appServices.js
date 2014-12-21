@@ -10,7 +10,6 @@
             version: '1.00'
         };
         
-        
         /* === PUBLIC ACCESS === */
         var publicData = {};
         publicData.getData = function(){
@@ -20,7 +19,24 @@
     });
 	
 	/* ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### */
+	
+	/* ### STORE DATA ### */
+    appServ.factory('profileData', function($rootScope) {
+		
+		
+		
+		/* === PUBLIC ACCESS === */
+        var publicData = {};
+        publicData.getData = function(){
+            return data;
+        };
 
+        return publicData;
+	
+	});
+	
+	
+	
     /* ### STORE DATA ### */
     appServ.factory('storeData', function($rootScope) {
 		
@@ -33,104 +49,89 @@
 		} */
 		
 		var data = [
+		
+			// PLAY GROUNDS
 			{
 				catTitle : 'PlayGrounds',
-				catId : 'playGrounds',
+				catId : 'PlayGrounds',
 				storeItems : [
 					{
-						itemName : 'Regular Wall',
-						itemId : 'regular_wall',
-						itemThumbnail : 'img/wall1.jpg',
-						itemPrice : 0,
-						itemAvailable: true
+						itemName : 'wall 1',
+						itemId : 'wallBG-1',
+						itemThumbnail : 'img/walls/wallBG-1.jpg',
+						itemPrice : 0
 					},
 					{
-						itemName : 'Dark Wood Wall',
-						itemId : 'dark_wood_wall',
-						itemThumbnail : 'img/wall1.jpg',
-						itemPrice : 200,
-						itemAvailable: false
+						itemName : 'wall 2',
+						itemId : 'wallBG-2',
+						itemThumbnail : 'img/walls/wallBG-2.jpg',
+						itemPrice : 200
 					},
 					{
-						itemName : 'Stone Wall',
-						itemId : 'stone_wall',
-						itemThumbnail : 'img/wall1.jpg',
-						itemPrice : 500,
-						itemAvailable: false
+						itemName : 'wall 3',
+						itemId : 'wallBG-3',
+						itemThumbnail : 'img/walls/wallBG-3.jpg',
+						itemPrice : 500
 					},
 					{
-						itemName : 'Toilet Wall 1',
-						itemId : 'toilet_wall_1',
-						itemThumbnail : 'img/wall1.jpg',
-						itemPrice : 1000,
-						itemAvailable: false
+						itemName : 'wall 4',
+						itemId : 'wallBG-4',
+						itemThumbnail : 'img/walls/wallBG-4.jpg',
+						itemPrice : 1000
 					},
 					{
-						itemName : 'Toilet Wall 2',
-						itemId : 'toilet_wall_2',
-						itemThumbnail : 'img/wall1.jpg',
-						itemPrice : 2000,
-						itemAvailable: false
+						itemName : 'wall 5',
+						itemId : 'wallBG-5',
+						itemThumbnail : 'img/walls/wallBG-5.jpg',
+						itemPrice : 2000
+					},
+					{
+						itemName : 'wall 6',
+						itemId : 'wallBG-6',
+						itemThumbnail : 'img/walls/wallBG-6.jpg',
+						itemPrice : 2000
 					}
 				]
 			},
 			
+			// MOUTHS
 			{
-				catTitle : 'Holes',
-				catId : 'holes',
+				catTitle : 'Mouths',
+				catId : 'Mouths',
 				storeItems : [
 					{
-						itemName : 'Hole 1',
-						itemId : 'hole_1',
-						itemThumbnail : 'img/hole1.jpg',
-						itemPrice : 0,
-						itemAvailable: true
+						itemName : 'Mouth 1',
+						itemId : 'mouth-1',
+						itemThumbnail : 'img/mouths/mouth-1.jpg',
+						itemPrice : 0
 					},
 					{
-						itemName : 'Hole 2',
-						itemId : 'hole_2',
-						itemThumbnail : 'img/hole1.jpg',
-						itemPrice : 200,
-						itemAvailable: false
+						itemName : 'Mouth 2',
+						itemId : 'mouth-2',
+						itemThumbnail : 'img/mouths/mouth-2.jpg',
+						itemPrice : 200
 					},
 					{
-						itemName : 'Hole 3',
-						itemId : 'hole_3',
-						itemPrice : 500,
-						itemThumbnail : 'img/hole1.jpg',
-						itemAvailable: false
+						itemName : 'Mouth 3',
+						itemId : 'mouth-3',
+						itemThumbnail : 'img/mouths/mouth-3.jpg',
+						itemPrice : 500
 					},
 					{
-						itemName : 'Hole 4',
-						itemId : 'hole_4',
-						itemThumbnail : 'img/hole1.jpg',
-						itemPrice : 1000,
-						itemAvailable: false
+						itemName : 'Mouth 4',
+						itemId : 'mouth-4',
+						itemThumbnail : 'img/mouths/mouth-4.jpg',
+						itemPrice : 1000
 					},
 					{
-						itemName : 'Hole 5',
-						itemId : 'hole_5',
-						itemThumbnail : 'img/hole1.jpg',
-						itemPrice : 2000,
-						itemAvailable: false
-					},
-					{
-						itemName : 'Hole 6',
-						itemId : 'hole_6',
-						itemThumbnail : 'img/hole1.jpg',
-						itemPrice : 2500,
-						itemAvailable: false
-					},
-					{
-						itemName : 'Hole 7',
-						itemId : 'hole_7',
-						itemThumbnail : 'img/hole1.jpg',
-						itemPrice : 2800,
-						itemAvailable: false
+						itemName : 'Mouth 5',
+						itemId : 'mouth-5',
+						itemThumbnail : 'img/mouths/mouth-5.jpg',
+						itemPrice : 2000
 					}
 				]
-			},
-			
+			}
+			/*
 			{
 				catTitle : 'Pointers',
 				catId : 'pointers',
@@ -172,6 +173,8 @@
 					}
 				]
 			}
+		 */
+		
 		];
 		
 		
@@ -184,6 +187,10 @@
         return publicData;
 	
 	});
+	
+	
+	
+	
 	
     /* ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### */
     

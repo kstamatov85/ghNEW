@@ -15,36 +15,59 @@
         /* ### ### SET/LOAD USER DATA ### ###  */
 		$rootScope.userStoreData;
 		$rootScope.userProfileData;
-        
+		
+		//PROFILE DATA
+        if(localStorage.getItem('profileData')){
+            $rootScope.userProfileData = JSON.parse(localStorage.getItem('profileData'));
+        }
+        else{
+
+            var newProfileData = [
+				{title:"Points:",value:0},
+				{title:"Lifetime Score:",value:0},
+				{title:"Best Score:",value:0},
+				{title:"Total Games:",value:0}
+			];
+            localStorage.setItem('profileData', JSON.stringify(newProfileData));
+            $rootScope.userProfileData = JSON.parse(localStorage.getItem('profileData'));
+			
+        };
+		
+
 		//STORE DATA
         if(localStorage.getItem('storeData')){
             $rootScope.userStoreData = JSON.parse(localStorage.getItem('storeData'));
         }
         else{
-            var newStoreData = {
-				points : 0,
-				playGrounds : ['regular_wall'],
-				holes : ['regular_hole'],
-				pointers : ['regular_pointer']
-            };
+            var newStoreData = 
+				{
+					PlayGrounds : {
+						selectedItem : 'wallBG-1', //correspond to itemId
+						'wallBG-1' : true,
+						'wallBG-2' : false,
+						'wallBG-3' : false,
+						'wallBG-4' : false,
+						'wallBG-5' : false,
+						'wallBG-6' : false
+					},
+					
+					Mouths : {
+						selectedItem : 'mouth-1', //correspond to itemId
+						'mouth-1' : true,
+						'mouth-2' : false,
+						'mouth-3' : false,
+						'mouth-4' : false,
+						'mouth-5' : false
+					}
+				};
+
+			
             localStorage.setItem('storeData', JSON.stringify(newStoreData));
             $rootScope.userStoreData = JSON.parse(localStorage.getItem('storeData'));
         };
 		
 		
-        //PROFILE DATA
-        if(localStorage.getItem('profileData')){
-            $rootScope.userStoreData = JSON.parse(localStorage.getItem('profileData'));
-        }
-        else{
-            var newProfileData = {
-				bestScore : 0,
-				totalGames : 0,
-				lifetimeCoins : 0
-            };
-            localStorage.setItem('userProfileData', JSON.stringify(newProfileData));
-            $rootScope.userProfileData = JSON.parse(localStorage.getItem('profileData'));
-        };
+        
         
         
         /* ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### */
@@ -111,18 +134,30 @@
                 this.load.image('windArrow', 'img/arrowImg.png');
                 this.load.image('target', 'img/target.png');
                 
-                // load walls
-                this.load.image('gameBG-1', 'img/pattern6.jpg');
-                
-                //Load hole
+				//Load hole
                 this.load.image('hole-1', 'img/hole.png');
-                
-                //Load mouth
-                this.load.image('mouth-1', 'img/mouth1.jpg');
                 
                 //Load balls
                 this.load.image('ball-1', 'img/ball.png');
-                
+
+				
+                // load walls
+                this.load.image('gameBG-1', 'img/walls/wallBG-1.jpg');
+				this.load.image('gameBG-2', 'img/walls/wallBG-2.jpg');
+				this.load.image('gameBG-3', 'img/walls/wallBG-3.jpg');
+				this.load.image('gameBG-4', 'img/walls/wallBG-4.jpg');
+				this.load.image('gameBG-5', 'img/walls/wallBG-5.jpg');
+				this.load.image('gameBG-6', 'img/walls/wallBG-6.jpg');
+				
+				
+				//Load mouth
+                this.load.image('mouth-1', 'img/mouths/mouth-1.jpg');
+				this.load.image('mouth-2', 'img/mouths/mouth-2.jpg');
+				this.load.image('mouth-3', 'img/mouths/mouth-3.jpg');
+				this.load.image('mouth-4', 'img/mouths/mouth-4.jpg');
+				this.load.image('mouth-5', 'img/mouths/mouth-5.jpg');
+				
+				
                 // load spritesheets
                 this.load.spritesheet('button-start', 'img/button-start.png', 401, 143); 
             },

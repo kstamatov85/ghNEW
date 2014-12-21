@@ -113,6 +113,7 @@ body{
 	position:relative;
 	box-sizing:border-box;
 	padding:20px;
+	overflow:scroll
 }
 
 
@@ -142,9 +143,22 @@ body{
 	height:160px;
 	float:left;
 	margin:10px;
-	border:1px solid red;
+	border:3px solid red;
 	overflow:hidden;
+	background:#000;
+}
 
+.item-list > li h5,
+.item-list > li h6{
+	color:#fff;
+}
+
+.item-list > li.available{
+	border:3px solid green;
+}
+
+.item-list > li.selected{
+	background:pink;
 }
 
 

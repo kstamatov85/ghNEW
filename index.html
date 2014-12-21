@@ -58,36 +58,12 @@
                 
                 <div id="profileContent" class="data-box one-grow">
                     <ul>
-                        <li>
+                        <li data-ng-repeat="profile in profileData">
                             <strong>
-                                Coins:
+								{{profile.title}}
                             </strong>
                             <span>
-                                67
-                            </span>
-                        </li>
-                        <li>
-                            <strong>
-                                Lifetime Score:
-                            </strong>
-                            <span>
-                                2000
-                            </span>
-                        </li>
-                        <li>
-                            <strong>
-                                Best Score:
-                            </strong>
-                            <span>
-                                26
-                            </span>
-                        </li>
-                        <li>
-                            <strong>
-                                Total Games:
-                            </strong>
-                            <span>
-                                20
+                                {{profile.value}}
                             </span>
                         </li>
                     </ul>
@@ -112,18 +88,19 @@
                 
                     <div class="width-prop">
                     
-                        <!-- <section class="store-cat cfix" ng-repeat="storeCat in storeData">
+                        <section class="store-cat cfix" ng-repeat="storeCat in storeData">
                             <h4>{{storeCat.catTitle}}</h4>
                             <ul class="item-list cfix">
-                                <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available : storeCat.itemId == avaItems[storeCat.catId].}" ng-click="buyItem(storeItem.itemPrice, itemId)">
-                                    <h5>{{storeItem.itemName}}</h5>
+                               <!--  <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available : storeCat.itemId == avaItems[storeCat.catId].}" ng-click="buyItem(storeItem.itemPrice, itemId)"> -->
+                                 <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available: userStoreData[storeCat.catId][storeItem.itemId], selected: userStoreData[storeCat.catTitle]['selectedItem'] == storeItem.itemId}">
+									<h5>{{storeItem.itemName}}</h5>
                                     <h6>{{storeItem.itemPrice}}</h6>
                                     <div class="item-info">
                                         <img ng-src="{{storeItem.itemThumbnail}}" alt="" />
                                     </div>
                                 </li>
                             </ul>
-                        </section>  -->   
+                        </section> 
                     </div>
                    
                     
