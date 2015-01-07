@@ -85,7 +85,7 @@
             },
             create: function(){
                 // Loading screen will have dark background
-                this.stage.backgroundColor = '#ffffff';
+                this.stage.backgroundColor = '#e9bae8';
                 
                 // Scaling options
                 this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
