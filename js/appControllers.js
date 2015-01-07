@@ -15,6 +15,7 @@
         //CLOSE SCREEN
         $scope.menuScreen = function(key){
             $scope.$emit('closeMenu', key);
+			//$("#gameScreen").css({"display":"block"});
         }
     });
 	
@@ -35,6 +36,7 @@
         //CLOSE SCREEN
         $scope.menuScreen = function(key){
             $scope.$emit('closeMenu', key);
+			//$("#gameScreen").css({"display":"block"});
         }
 
     });

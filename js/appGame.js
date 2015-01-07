@@ -30,11 +30,13 @@
                 bg.height = gData.GAME_HEIGHT;
                 
                 //Profile Screen button
-                this.add.button(100, 100, 'profileIcon', this.openProfile, this);
+                var startButton = this.add.button(0, gData.GAME_HEIGHT-400, 'profileIcon', this.openProfile, this);
                 //Store Screen button
-                this.add.button(300, 100, 'storeIcon', this.openStore, this);
+                var storeButton = this.add.button(gData.GAME_WIDTH - startButton.width, gData.GAME_HEIGHT-400, 'storeIcon', this.openStore, this);
+				
                 // Start Game button
-                this.add.button(gData.GAME_WIDTH-450, gData.GAME_HEIGHT-200, 'button-start', this.startGame, this, 1, 0, 2);
+                var startButton = this.add.button(gData.GAME_WIDTH/2, 1050, 'button-start2', this.startGame, this);
+				startButton.anchor.setTo(0.5, 0.5);
             },
             // Start Game
             startGame: function() {
@@ -42,13 +44,18 @@
             },
             // Open Profile View
             openProfile: function() {
-                $scope.showProfile = true;
-                $scope.$apply();
+				
+				$scope.showProfile = true;
+				$scope.$apply();	
+				
+				//$("#gameScreen").css({"display":"none"});
             },
             // Open Store View
             openStore: function() {
                 $scope.showStore = true;
                 $scope.$apply();
+				
+				//$("#gameScreen").css({"display":"none"});
             }
         };
         

@@ -85,7 +85,7 @@
             },
             create: function(){
                 // Loading screen will have dark background
-                this.stage.backgroundColor = '#000000';
+                this.stage.backgroundColor = '#ffffff';
                 
                 // Scaling options
                 this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
@@ -115,7 +115,7 @@
         $rootScope.gh.Preload.prototype = {
             preload: function(){
                 // Add loading Bar image
-                this.preloadBar = this.add.sprite(($rootScope.gh.GAME_WIDTH-311)/2, ($rootScope.gh.GAME_HEIGHT-27)/2, 'preloaderBar');
+                this.preloadBar = this.add.sprite(($rootScope.gh.GAME_WIDTH-420)/2, ($rootScope.gh.GAME_HEIGHT-27)/2, 'preloaderBar');
                 // Run Loading Bar
                 this.load.setPreloadSprite(this.preloadBar);
                 
@@ -155,9 +155,11 @@
 				
                 // load spritesheets
                 this.load.spritesheet('button-start', 'img/button-start.png', 401, 143); 
+				this.load.image('button-start2', 'img/button-start2.png'); 
             },
             create: function(){
                 // start the MainMenu state
+				
                 this.state.start('Menu');
             }
         };
