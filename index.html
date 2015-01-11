@@ -52,12 +52,12 @@
 		<div id="mainWrapper" class="view-frame" ng-controller="gameCtrl">
             
 			<!-- PROFILE SCREEN -->
-            <div id="profileScreen" class="html-box flex-box v-direction" ng-controller="profileCtrl">
-                <header class="no-grow">
+            <div id="profileScreen" class="html-box" ng-controller="profileCtrl">
+                <header class="">
                     <h2>{{localization.profileLabel}}</h2>
                 </header>
                 
-                <div id="profileContent" class="data-box one-grow">
+                <div id="profileContent" class="data-box">
                     <ul>
                         <li data-ng-repeat="profile in profileData">
                             <strong>
@@ -68,48 +68,39 @@
                             </span>
                         </li>
                     </ul>
+
                 </div>
            
-                <footer class="no-grow">
-                    <div class="container">
-                        <span ng-click="menuScreen('showProfile')">{{localization.backLabel}}</span>
-                    </div>
+                <footer class="">
+                    <span ng-click="menuScreen('showProfile')">{{localization.backLabel}}</span>
                 </footer>
            </div>
             
             <!-- STORE SCREEN -->
-            <div id="storeScreen" class="html-box flex-box v-direction" ng-controller="storeCtrl">
-                <header class="no-grow">
+            <div id="storeScreen" class="html-box" ng-controller="storeCtrl">
+                <header class="">
                     <h2>{{localization.storeLabel}}</h2>
                     <h3>{{profileData.points}}</h3>
                 </header>
                 
-                <div id="storeContent" class="data-box one-grow">
-                
-                    <div class="width-prop">
-                    
-                        <section class="store-cat cfix" ng-repeat="storeCat in storeData">
-                            <h4>{{storeCat.catTitle}}</h4>
-                            <ul class="item-list cfix">
-                               <!--  <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available : storeCat.itemId == avaItems[storeCat.catId].}" ng-click="buyItem(storeItem.itemPrice, itemId)"> -->
-                                 <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available: userStoreData[storeCat.catId][storeItem.itemId], selected: userStoreData[storeCat.catTitle]['selectedItem'] == storeItem.itemId}">
-									<h5>{{storeItem.itemName}}</h5>
-                                    <h6>{{storeItem.itemPrice}}</h6>
-                                    <div class="item-info">
-                                        <img ng-src="{{storeItem.itemThumbnail}}" alt="" />
-                                    </div>
-                                </li>
-                            </ul>
-                        </section> 
-                    </div>
-                   
-                    
+                <div id="storeContent" class="data-box">
+					<section class="store-cat cfix" ng-repeat="storeCat in storeData">
+						<h4>{{storeCat.catTitle}}</h4>
+						<ul class="item-list cfix">
+						   <!--  <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available : storeCat.itemId == avaItems[storeCat.catId].}" ng-click="buyItem(storeItem.itemPrice, itemId)"> -->
+							 <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available: userStoreData[storeCat.catId][storeItem.itemId], selected: userStoreData[storeCat.catTitle]['selectedItem'] == storeItem.itemId}">
+								<h5>{{storeItem.itemName}}</h5>
+								<h6>{{storeItem.itemPrice}}</h6>
+								<div class="item-info">
+									<img ng-src="{{storeItem.itemThumbnail}}" alt="" />
+								</div>
+							</li>
+						</ul>
+					</section> 
                 </div>
                 
                 <footer>
-                    <div class="container">
-                        <span ng-click="menuScreen('showStore')">{{localization.backLabel}}</span>
-                    </div>
+                    <span ng-click="menuScreen('showStore')">{{localization.backLabel}}</span>
                 </footer>
                 
             </div>

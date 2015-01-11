@@ -63,7 +63,7 @@ body{
 
 
 .html-box{
-    background:#ffaa00;
+    background:#fff;
 	z-index:10;
 	height:0;
 	overflow:hidden;
@@ -75,31 +75,40 @@ body{
 	height:100%;
 }
 
+/* === SCREENS HEADER === */
 
-
-
+.html-box > header,
+.html-box > footer{
+	width:100%;
+	height:80px;
+    line-height:80px;
+	background:#B259BC;
+	z-index:6;
+}
 .html-box > header{
 	position:relative;
-	width:100%;
-	height:60px;
-    line-height:60px;
-	background:#000;
     color:#fff;
     text-align:center;
+	box-shadow: 0px 2px 5px 0px #222;
 }
 
 .html-box > .data-box{
-	padding:10px;
+	padding:90px 10px;
+	box-sizing:border-box;
+	color:#75457B;
+	overflow-y: auto;
+	position:absolute;
+	height:100%;
+	width:100%;
+	top:0;
+	z-index:5;
 }
 
 
 .html-box > footer{
     position:absolute;
 	bottom:0;
-	width:100%;
-	height:60px;
-    line-height:60px;
-    background:#000;
+	box-shadow: 0px -2px 5px 0px #222;
 }
 
 .html-box > footer span{
@@ -121,7 +130,6 @@ body{
 /* === === PROFILE SCREEN === === */
 #profileContent ul li{
     padding:5px 0;
-    color:#fff;
     text-align:center;
     font-size:18px;
 }
@@ -131,22 +139,6 @@ body{
 /* === === STORE SCREEN === === */
 
 
-#storeContent{
-	position:relative;
-	box-sizing:border-box;
-	padding:20px;
-	overflow:scroll
-}
-
-
-
-.store-wrap{
-	
-}
-
-.store-cat{
-	margin-bottom:20px;
-}
 
 
 
