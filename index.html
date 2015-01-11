@@ -55,6 +55,7 @@
             <div id="profileScreen" class="html-box" ng-controller="profileCtrl">
                 <header class="">
                     <h2>{{localization.profileLabel}}</h2>
+					<span class="icon"></span>
                 </header>
                 
                 <div id="profileContent" class="data-box">
@@ -80,7 +81,7 @@
             <div id="storeScreen" class="html-box" ng-controller="storeCtrl">
                 <header class="">
                     <h2>{{localization.storeLabel}}</h2>
-                    <h3>{{profileData.points}}</h3>
+					<span class="icon">{{profileData.points}}$</span>
                 </header>
                 
                 <div id="storeContent" class="data-box">

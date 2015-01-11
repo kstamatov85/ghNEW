@@ -92,17 +92,30 @@ body{
 	box-shadow: 0px 2px 5px 0px #222;
 }
 
-.html-box > .data-box{
-	padding:90px 10px;
-	box-sizing:border-box;
-	color:#75457B;
-	overflow-y: auto;
-	position:absolute;
-	height:100%;
-	width:100%;
-	top:0;
-	z-index:5;
+.html-box > header h2{
+	text-align:left;
+	text-indent:10px;
 }
+
+.html-box > header .icon{
+	position:absolute;
+	right:10px;
+	top:0;
+	height:80px;
+	padding-left:70px;
+	display:block;
+	font-size:18px;
+}
+
+#profileScreen .icon{
+	background:url(../img/whiteprofile.png) no-repeat 0 100%;
+	background-size:auto 80%;
+}
+#storeScreen .icon{
+	background:url(../img/coin-money.png) no-repeat 0 100%;
+	background-size:auto 80%;
+}
+
 
 
 .html-box > footer{
@@ -116,6 +129,21 @@ body{
     text-align:center;
     color:#fff;
 }
+
+.html-box > .data-box{
+	padding:90px 10px;
+	box-sizing:border-box;
+	color:#75457B;
+	overflow-y: auto;
+	position:absolute;
+	height:100%;
+	width:100%;
+	top:0;
+	z-index:5;
+}
+
+
+
 
 
 
