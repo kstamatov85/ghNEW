@@ -59,7 +59,7 @@ body{
 }
 
 .html-box{
-    background:url(../img/bgh.jpg) repeat;
+    background:#fff;
 }
 
 .html-box > header{
