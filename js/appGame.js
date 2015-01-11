@@ -4,10 +4,6 @@
     
     appGame.controller('gameCtrl', function($rootScope, $scope) {
         
-        //CLOSE EXTRA SCREENS BY DEFAULT
-        $scope.showProfile = false;
-        $scope.showStore = false;
-        
         //CLOSE MENU LISTENER
         $scope.$on('closeMenu', function (event, data) {
           $scope[data] = false;
@@ -30,9 +26,10 @@
                 bg.height = gData.GAME_HEIGHT;
                 
                 //Profile Screen button
-                var startButton = this.add.button(0, gData.GAME_HEIGHT-400, 'profileIcon', this.openProfile, this);
+                var profileButton = this.add.button(0, gData.GAME_HEIGHT-400, 'profileIcon', this.openProfile, this);
                 //Store Screen button
-                var storeButton = this.add.button(gData.GAME_WIDTH - startButton.width, gData.GAME_HEIGHT-400, 'storeIcon', this.openStore, this);
+                var storeButton = this.add.button(gData.GAME_WIDTH - profileButton.width, gData.GAME_HEIGHT-400, 'storeIcon', this.openStore, this);
+				
 				
                 // Start Game button
                 var startButton = this.add.button(gData.GAME_WIDTH/2, 1050, 'button-start2', this.startGame, this);
@@ -44,16 +41,23 @@
             },
             // Open Profile View
             openProfile: function() {
-				
-				$scope.showProfile = true;
-				$scope.$apply();	
+				console.log('profile');
+				setTimeout(function(){
+					$('#profileScreen').addClass('show');
+				},100);
+				/* $scope.showProfile = true;
+				$scope.$apply(); */	
 				
 				//$("#gameScreen").css({"display":"none"});
             },
             // Open Store View
             openStore: function() {
-                $scope.showStore = true;
-                $scope.$apply();
+				console.log('store');
+				setTimeout(function(){
+					$('#storeScreen').addClass('show');
+				},100);
+               /*  $scope.showStore = true;
+                $scope.$apply(); */
 				
 				//$("#gameScreen").css({"display":"none"});
             }

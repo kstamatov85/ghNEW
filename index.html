@@ -51,11 +51,8 @@
 		<!-- APP VIEWS -->
 		<div id="mainWrapper" class="view-frame" ng-controller="gameCtrl">
             
-            <!-- GAME SCREEN -->
-            <div id="gameScreen"></div>
-            
-            <!-- PROFILE SCREEN -->
-            <div id="profileScreen" class="html-box flex-box v-direction" ng-controller="profileCtrl" ng-show="showProfile">
+			<!-- PROFILE SCREEN -->
+            <div id="profileScreen" class="html-box flex-box v-direction" ng-controller="profileCtrl">
                 <header class="no-grow">
                     <h2>{{localization.profileLabel}}</h2>
                 </header>
@@ -81,7 +78,7 @@
            </div>
             
             <!-- STORE SCREEN -->
-            <div id="storeScreen" class="html-box flex-box v-direction" ng-controller="storeCtrl" ng-show="showStore">
+            <div id="storeScreen" class="html-box flex-box v-direction" ng-controller="storeCtrl">
                 <header class="no-grow">
                     <h2>{{localization.storeLabel}}</h2>
                     <h3>{{profileData.points}}</h3>
@@ -116,7 +113,12 @@
                 </footer>
                 
             </div>
-                
+              
+			
+            <!-- GAME SCREEN -->
+            <div id="gameScreen"></div>
+            
+              
        </div>
         
 		<!--<script src="js/index.js"></script> -->

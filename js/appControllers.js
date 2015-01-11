@@ -14,11 +14,16 @@
 		
         //CLOSE SCREEN
         $scope.menuScreen = function(key){
-            $scope.$emit('closeMenu', key);
+			setTimeout(function(){
+				$('#profileScreen').removeClass('show');
+			},100);
+			
+		
+			
+            //$scope.$emit('closeMenu', key);
 			//$("#gameScreen").css({"display":"block"});
         }
     });
-	
 	
 	
     appCtrl.controller('storeCtrl', function($rootScope, $scope, globalData, storeData) {
@@ -35,14 +40,15 @@
         
         //CLOSE SCREEN
         $scope.menuScreen = function(key){
-            $scope.$emit('closeMenu', key);
+			setTimeout(function(){
+				$('#storeScreen').removeClass('show');
+			},100);
+           // $scope.$emit('closeMenu', key);
 			//$("#gameScreen").css({"display":"block"});
         }
 
     });
     
     
-    
-    
-    
+
 })();
