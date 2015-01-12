@@ -91,10 +91,12 @@
 						   <!--  <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available : storeCat.itemId == avaItems[storeCat.catId].}" ng-click="buyItem(storeItem.itemPrice, itemId)"> -->
 							 <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available: userStoreData[storeCat.catId][storeItem.itemId], selected: userStoreData[storeCat.catTitle]['selectedItem'] == storeItem.itemId}">
 								<h5>{{storeItem.itemName}}</h5>
-								<h6>{{storeItem.itemPrice}}</h6>
-								<div class="item-info">
+								<div class="item-img">
 									<img ng-src="{{storeItem.itemThumbnail}}" alt="" />
 								</div>
+								<div class="footLabel" ng-if="userStoreData[storeCat.catId][storeItem.itemId] && userStoreData[storeCat.catTitle]['selectedItem'] != storeItem.itemId">SELECT</div>
+								<div class="footLabel" ng-if="userStoreData[storeCat.catTitle]['selectedItem'] == storeItem.itemId">ACTIVE</div>
+								<div class="footLabel" ng-if="!userStoreData[storeCat.catId][storeItem.itemId]">{{storeItem.itemPrice}}$</div>
 							</li>
 						</ul>
 					</section> 

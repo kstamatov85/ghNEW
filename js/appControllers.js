@@ -37,7 +37,8 @@
 		//GET USER PROFILE DATA
 		$scope.profileData = $rootScope.userProfileData;
 
-        
+
+		
         //CLOSE SCREEN
         $scope.menuScreen = function(key){
 			setTimeout(function(){

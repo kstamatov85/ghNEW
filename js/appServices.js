@@ -58,6 +58,45 @@
 		
 		var data = [
 		
+			
+			// MOUTHS
+			{
+				catTitle : 'Mouths',
+				catId : 'Mouths',
+				storeItems : [
+					{
+						itemName : 'Mouth 1',
+						itemId : 'mouth-1',
+						itemThumbnail : 'img/mouths/mouth-1.jpg',
+						itemPrice : 0
+					},
+					{
+						itemName : 'Mouth 2',
+						itemId : 'mouth-2',
+						itemThumbnail : 'img/mouths/mouth-2.jpg',
+						itemPrice : 200
+					},
+					{
+						itemName : 'Mouth 3',
+						itemId : 'mouth-3',
+						itemThumbnail : 'img/mouths/mouth-3.jpg',
+						itemPrice : 500
+					},
+					{
+						itemName : 'Mouth 4',
+						itemId : 'mouth-4',
+						itemThumbnail : 'img/mouths/mouth-4.jpg',
+						itemPrice : 1000
+					},
+					{
+						itemName : 'Mouth 5',
+						itemId : 'mouth-5',
+						itemThumbnail : 'img/mouths/mouth-5.jpg',
+						itemPrice : 2000
+					}
+				]
+			},
+			
 			// PLAY GROUNDS
 			{
 				catTitle : 'PlayGrounds',
@@ -100,45 +139,8 @@
 						itemPrice : 2000
 					}
 				]
-			},
-			
-			// MOUTHS
-			{
-				catTitle : 'Mouths',
-				catId : 'Mouths',
-				storeItems : [
-					{
-						itemName : 'Mouth 1',
-						itemId : 'mouth-1',
-						itemThumbnail : 'img/mouths/mouth-1.jpg',
-						itemPrice : 0
-					},
-					{
-						itemName : 'Mouth 2',
-						itemId : 'mouth-2',
-						itemThumbnail : 'img/mouths/mouth-2.jpg',
-						itemPrice : 200
-					},
-					{
-						itemName : 'Mouth 3',
-						itemId : 'mouth-3',
-						itemThumbnail : 'img/mouths/mouth-3.jpg',
-						itemPrice : 500
-					},
-					{
-						itemName : 'Mouth 4',
-						itemId : 'mouth-4',
-						itemThumbnail : 'img/mouths/mouth-4.jpg',
-						itemPrice : 1000
-					},
-					{
-						itemName : 'Mouth 5',
-						itemId : 'mouth-5',
-						itemThumbnail : 'img/mouths/mouth-5.jpg',
-						itemPrice : 2000
-					}
-				]
 			}
+			
 			/*
 			{
 				catTitle : 'Pointers',

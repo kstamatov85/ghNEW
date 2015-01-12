@@ -1,15 +1,23 @@
 
-
-
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 480px) and (max-width: 768px) {
 	
 }
 
-/* #Tablet (Portrait)
+
+
+/* 768 MAX
 ================================================== */
 /* Note: Design for a width of 768px */
 
-@media only screen and (min-width: 480px) and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
+	.item-list > li h5{
+		font-size:18px;
+	}
+}
+
+
+
+@media only screen and (min-width: 480px) and (max-width: 600px) {
 	
 }
 
@@ -36,6 +44,10 @@
 	
 	#homeScreen footer{
 		font-size:12px;
+	}
+	
+	.item-list > li h5{
+		font-size:16px;
 	}
 
 }

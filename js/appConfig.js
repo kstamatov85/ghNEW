@@ -50,7 +50,7 @@
 				Mouths : {
 					selectedItem : 'mouth-1', //correspond to itemId
 					'mouth-1' : true,
-					'mouth-2' : false,
+					'mouth-2' : true,
 					'mouth-3' : false,
 					'mouth-4' : false,
 					'mouth-5' : false
