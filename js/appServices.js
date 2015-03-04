@@ -48,13 +48,6 @@
     /* ### STORE DATA ### */
     appServ.factory('storeData', function($rootScope) {
 		
-		/* for(var i=0; i<data.length; i++){
-			 for(j=0; j < data[i].storeItems.length; j++){
-				if(data[i].storeItems[j].itemId == )
-			 
-			 }
-		
-		} */
 		
 		var data = [
 		

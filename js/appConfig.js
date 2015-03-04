@@ -23,7 +23,7 @@
         }
         else{
             var newProfileData = {
-				points : 0,
+				points : 10000,
 				lifetimePoints : 0,
 				bestScore : 0,
 				totalGames : 0

@@ -41,7 +41,7 @@
             },
             // Open Profile View
             openProfile: function() {
-				console.log('profile');
+				//console.log('profile');
 				setTimeout(function(){
 					$('#profileScreen').addClass('show');
 				},100);
@@ -52,7 +52,7 @@
             },
             // Open Store View
             openStore: function() {
-				console.log('store');
+				//console.log('store');
 				setTimeout(function(){
 					$('#storeScreen').addClass('show');
 				},100);

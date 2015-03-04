@@ -89,7 +89,7 @@
 						<h4>{{storeCat.catTitle}}</h4>
 						<ul class="item-list cfix">
 						   <!--  <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available : storeCat.itemId == avaItems[storeCat.catId].}" ng-click="buyItem(storeItem.itemPrice, itemId)"> -->
-							 <li ng-repeat="storeItem in storeCat.storeItems" ng-class="{available: userStoreData[storeCat.catId][storeItem.itemId], selected: userStoreData[storeCat.catTitle]['selectedItem'] == storeItem.itemId}">
+							 <li ng-repeat="storeItem in storeCat.storeItems" ng-click="clickItem(userStoreData[storeCat.catId][storeItem.itemId], userStoreData[storeCat.catTitle]['selectedItem'],storeItem.itemId, storeCat.catId, storeItem.itemPrice)" ng-class="{available: userStoreData[storeCat.catId][storeItem.itemId], selected: userStoreData[storeCat.catTitle]['selectedItem'] == storeItem.itemId}">
 								<h5>{{storeItem.itemName}}</h5>
 								<div class="item-img">
 									<img ng-src="{{storeItem.itemThumbnail}}" alt="" />
